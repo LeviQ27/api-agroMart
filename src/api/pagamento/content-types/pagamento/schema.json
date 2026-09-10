@@ -1,0 +1,112 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pagamentos_agromart",
+  "info": {
+    "singularName": "pagamento",
+    "pluralName": "pagamentos",
+    "displayName": "Pagamento AgroMart",
+    "description": "Cobranças Pix e validação de comprovantes para o módulo de pagamentos do AgroMart"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "referencia_pedido": {
+      "type": "string",
+      "required": true
+    },
+    "valor": {
+      "type": "decimal",
+      "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "PENDENTE",
+        "COMPROVANTE_ENVIADO",
+        "APROVADO",
+        "REJEITADO",
+        "EXPIRADO"
+      ],
+      "default": "PENDENTE",
+      "required": true
+    },
+    "tipo": {
+      "type": "enumeration",
+      "enum": [
+        "PIX"
+      ],
+      "default": "PIX",
+      "required": true
+    },
+    "chave_pix": {
+      "type": "string",
+      "required": true
+    },
+    "nome_recebedor": {
+      "type": "string",
+      "required": true
+    },
+    "cidade_recebedor": {
+      "type": "string",
+      "default": "BRASILIA"
+    },
+    "txid": {
+      "type": "string"
+    },
+    "pix_copia_cola": {
+      "type": "text"
+    },
+    "qr_code_url": {
+      "type": "text"
+    },
+    "comprovante": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "observacao": {
+      "type": "text"
+    },
+    "motivo_rejeicao": {
+      "type": "text"
+    },
+    "ocr_resultado": {
+      "type": "json"
+    },
+    "historico_status": {
+      "type": "json"
+    },
+    "data_vencimento": {
+      "type": "datetime"
+    },
+    "data_confirmacao": {
+      "type": "datetime"
+    },
+    "extrato": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::extrato.extrato"
+    },
+    "loja": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::loja.loja"
+    },
+    "consumidor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "pedido": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pedido.pedido"
+    }
+  }
+}

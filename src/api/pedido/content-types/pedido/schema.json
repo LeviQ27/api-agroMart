@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pedidos_agromart",
+  "info": {
+    "singularName": "pedido",
+    "pluralName": "pedidos",
+    "displayName": "Pedido AgroMart",
+    "description": "Pedido realizado pelo cliente/coprodutor no mobile, vinculado à loja/produtor e ao pagamento Pix"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "codigo": { "type": "string" },
+    "status": {
+      "type": "enumeration",
+      "enum": ["AGUARDANDO_PAGAMENTO", "PAGO", "EM_PREPARO", "PRONTO", "ENTREGUE", "CANCELADO"],
+      "default": "AGUARDANDO_PAGAMENTO",
+      "required": true
+    },
+    "tipo_entrega": {
+      "type": "enumeration",
+      "enum": ["Receber", "Buscar"],
+      "default": "Receber"
+    },
+    "valor_total": { "type": "decimal", "required": true },
+    "itens": { "type": "json" },
+    "observacao": { "type": "text" },
+    "historico_status": { "type": "json" },
+    "cliente": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "loja": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::loja.loja"
+    },
+    "endereco_entrega": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::endereco.endereco"
+    }
+  }
+}

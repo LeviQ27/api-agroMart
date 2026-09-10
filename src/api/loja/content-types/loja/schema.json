@@ -44,7 +44,6 @@
       "type": "biginteger"
     },
     "endereco": {
-
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::endereco.endereco"
@@ -72,6 +71,24 @@
       "relation": "oneToMany",
       "target": "api::produto-avulso.produto-avulso",
       "mappedBy": "loja"
+    },
+    "agricultor": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "chave_pix": {
+      "type": "string"
+    },
+    "nome_recebedor_pix": {
+      "type": "string"
+    },
+    "cidade_recebedor_pix": {
+      "type": "string",
+      "default": "BRASILIA"
+    },
+    "regiao_administrativa": {
+      "type": "string"
     }
   }
 }

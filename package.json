@@ -44,5 +44,11 @@
       ".cache"
     ],
     "testEnvironment": "node"
+  },
+  "overrides": {
+    "webpack": "5.75.0"
+  },
+  "resolutions": {
+    "webpack": "5.75.0"
   }
 }
